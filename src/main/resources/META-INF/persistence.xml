@@ -9,9 +9,9 @@
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" 
-				value="jdbc:mysql://localhost/testdev" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="root!" />
+				value="jdbc:mysql://localhost/mentodev" />
+			<property name="javax.persistence.jdbc.user" value="admin" />
+			<property name="javax.persistence.jdbc.password" value="Goliathus00@" />
 			<property name="javax.persistence.jdbc.driver" 
 				value="com.mysql.jdbc.Driver" />
 			
