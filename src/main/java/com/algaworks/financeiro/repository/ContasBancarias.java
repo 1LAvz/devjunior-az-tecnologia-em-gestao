@@ -26,8 +26,7 @@ public class ContasBancarias implements Serializable {
     } // READ
 
 
-
-    // Lista contendo todos os lacamentos
+    // Lista contendo todos as contas
     public List<ContaBancaria> todos() {
         TypedQuery<ContaBancaria> query = manager.createQuery(
                 "from ContaBancaria", ContaBancaria.class);

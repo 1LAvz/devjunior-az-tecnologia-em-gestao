@@ -19,6 +19,14 @@
         <h:form id="frm">
             <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
 
+            <p:panelGrid columns="2" id="grid">
+                <p:outputLabel value="Número Conta" for="numConta" >
+                    <p:inputText id="numConta" size="12"/>
+                </p:outputLabel>
+                <p:commandButton value="Buscar" action="#{consultaContasBean.consultar()}"
+                                 icon="ui-icon-disk" update="@form" />
+            </p:panelGrid>
+
             <p:dataTable value="#{consultaContasBean.contas}" var="conta"
                          border="1" cellspacing="0" cellpadding="2"
                          paginator="true" rows="5" paginatorPosition="bottom">

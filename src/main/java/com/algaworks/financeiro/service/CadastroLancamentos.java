@@ -1,13 +1,12 @@
 package com.algaworks.financeiro.service;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.inject.Inject;
-
 import com.algaworks.financeiro.model.Lancamento;
 import com.algaworks.financeiro.repository.Lancamentos;
 import com.algaworks.financeiro.util.Transactional;
+
+import javax.inject.Inject;
+import java.io.Serializable;
+import java.util.Date;
 
 public class CadastroLancamentos implements Serializable {
 
@@ -24,7 +23,7 @@ public class CadastroLancamentos implements Serializable {
 					"Data de pagamento não pode ser uma data futura.");
 		}
 		
-		this.lancamentos.guardar(lancamento);
+		this.lancamentos. guardar(lancamento);
 	}
 	
 	@Transactional
