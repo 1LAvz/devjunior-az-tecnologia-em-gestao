@@ -1,18 +1,21 @@
-import java.math.BigDecimal;
-import java.util.Calendar;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import com.algaworks.financeiro.model.Lancamento;
 import com.algaworks.financeiro.model.Pessoa;
+import com.algaworks.financeiro.model.Pessoa2;
 import com.algaworks.financeiro.model.TipoLancamento;
 import com.algaworks.financeiro.util.JpaUtil;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import java.math.BigDecimal;
+import java.util.Calendar;
+
+// Onde crio meus lancamentos HARDCODE, a fim de preencher alguma informação nas tabelas
 public class CriaLancamentos {
 
 	public static void main(String[] args) {
+		// manager para persistir dados no banco
 		EntityManager manager = JpaUtil.getEntityManager();
+		//trx para definitivamente persistir os dados no banco de dados.
 		EntityTransaction trx = manager.getTransaction();
 		trx.begin();
 		
@@ -24,6 +27,9 @@ public class CriaLancamentos {
 		
 		Pessoa cliente = new Pessoa();
 		cliente.setNome("WWW Indústria de Alimentos");
+
+		Pessoa2 cliente2 = new Pessoa2();
+		cliente2.setNome("Lucas Avanzi");
 		
 		Pessoa fornecedor = new Pessoa();
 		fornecedor.setNome("SoftBRAX Treinamentos");
@@ -52,6 +58,7 @@ public class CriaLancamentos {
 		lancamento3.setTipo(TipoLancamento.DESPESA);
 		
 		manager.persist(cliente);
+		manager.persist(cliente2);
 		manager.persist(fornecedor);
 		manager.persist(lancamento1);
 		manager.persist(lancamento2);

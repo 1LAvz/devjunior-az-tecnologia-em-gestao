@@ -1,43 +1,32 @@
 package com.algaworks.financeiro.model;
 
+import com.algaworks.financeiro.validation.DecimalPositivo;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.algaworks.financeiro.validation.DecimalPositivo;
-
-@Entity
-@Table(name = "lancamento")
+@Entity //Significa que a classe tem que ser persistida no banco de dados
+@Table(name = "lancamento") //Nome da tabela no banco
 public class Lancamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private Pessoa pessoa;
+	// @Column(name="descricao") pode ser omitido pois o mesmo nome da variavel eh o da coluna do banco.
 	private String descricao;
 	private BigDecimal valor;
 	private TipoLancamento tipo;
 	private Date dataVencimento;
 	private Date dataPagamento;
 
-	@Id
-	@GeneratedValue
+	@Id // Significa atributo chave primaria
+	@GeneratedValue // Sera auto-increment
 	public Long getId() {
 		return id;
 	}
@@ -46,7 +35,7 @@ public class Lancamento implements Serializable {
 		this.id = id;
 	}
 
-	@NotNull
+	@NotNull //can not be null
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "pessoa_id")
 	public Pessoa getPessoa() {
