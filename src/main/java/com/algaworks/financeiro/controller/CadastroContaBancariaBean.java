@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Date;
 
 @Named
 @javax.faces.view.ViewScoped
@@ -31,12 +30,10 @@ public class CadastroContaBancariaBean implements Serializable {
         }
     }
 
-    public void adicionarData() {
-        Date dataDeCriacao = new Date();
-        if(this.contaBancaria.getDataCadastro() == null) {
-            this.contaBancaria.setDataCadastro(dataDeCriacao);
-        }
-    }
+//    public void adicionarData() {
+//        Date dataDeCriacao = new Date();
+//        this.contaBancaria.setDataCadastro(dataDeCriacao);
+//    }
 
     public void salvar() {
         FacesContext context = FacesContext.getCurrentInstance();

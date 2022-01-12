@@ -9,7 +9,9 @@
 
 
     <f:metadata>
-        <f:viewAction action="#{cadastroContaBancariaBean.adicionarData}" />
+        <o:viewParam name="id" value="#{cadastroContaBancariaBean.contaBancaria}" />
+<!--        <f:viewAction action="#{cadastroContaBancariaBean.adicionarData}" />-->
+        <f:viewAction action="#{cadastroContaBancariaBean.prepararCadastro}" />
     </f:metadata>
 
     <ui:define name="titulo">Cadastro de conta bancária</ui:define>

@@ -1,7 +1,6 @@
 package com.algaworks.financeiro.converter;
 
 import com.algaworks.financeiro.model.ContaBancaria;
-import com.algaworks.financeiro.model.Lancamento;
 import com.algaworks.financeiro.repository.ContasBancarias;
 
 import javax.faces.component.UIComponent;
@@ -10,7 +9,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-@FacesConverter(forClass = Lancamento.class)
+@FacesConverter(forClass = ContaBancaria.class)
 public class ContasBancariasConverter implements Converter {
 
     @Inject

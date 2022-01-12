@@ -1,6 +1,5 @@
 package com.algaworks.financeiro.model;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -29,7 +28,7 @@ public class ContaBancaria implements Serializable {
 
     private Long id;
     private String numero;
-    private Date dataCadastro;
+    private Date dataCadastro = new Date();
     private String banco;
     private BigDecimal saldo;
     private TipoConta tipo;
@@ -57,7 +56,6 @@ public class ContaBancaria implements Serializable {
     }
 
     @NotNull
-    @CreationTimestamp
     @Temporal(TemporalType.DATE)
     @Column(name = "data_cadastro", nullable = false)
     public Date getDataCadastro() {
