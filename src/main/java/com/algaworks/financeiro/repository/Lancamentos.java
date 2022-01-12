@@ -22,7 +22,7 @@ public class Lancamentos implements Serializable {
 
 	public Lancamento porId(Long id) {
 		return manager.find(Lancamento.class, id);
-	}
+	} // READ
 	
 	public List<String> descricoesQueContem(String descricao) {
 		TypedQuery<String> query = manager.createQuery(
@@ -32,7 +32,8 @@ public class Lancamentos implements Serializable {
 		query.setParameter("descricao", "%" + descricao + "%");
 		return query.getResultList();
 	}
-	
+
+	// Lista contendo todos os lacamentos
 	public List<Lancamento> todos() {
 		TypedQuery<Lancamento> query = manager.createQuery(
 				"from Lancamento", Lancamento.class);
@@ -41,14 +42,14 @@ public class Lancamentos implements Serializable {
 
 	public void adicionar(Lancamento lancamento) {
 		this.manager.persist(lancamento);
-	}
+	} // CREATE
 	
 	public Lancamento guardar(Lancamento lancamento) {
 		return this.manager.merge(lancamento);
-	}
+	} // UPDATE
 	
 	public void remover(Lancamento lancamento) {
 		this.manager.remove(lancamento);
-	}
+	} // DELETE
 
 }

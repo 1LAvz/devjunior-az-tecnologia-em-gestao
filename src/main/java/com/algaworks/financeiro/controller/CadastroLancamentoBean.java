@@ -1,14 +1,5 @@
 package com.algaworks.financeiro.controller;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.algaworks.financeiro.model.Lancamento;
 import com.algaworks.financeiro.model.Pessoa;
 import com.algaworks.financeiro.model.TipoLancamento;
@@ -17,6 +8,14 @@ import com.algaworks.financeiro.repository.Pessoas;
 import com.algaworks.financeiro.service.CadastroLancamentos;
 import com.algaworks.financeiro.service.NegocioException;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.List;
+
 @Named
 @javax.faces.view.ViewScoped
 public class CadastroLancamentoBean implements Serializable {
@@ -24,16 +23,16 @@ public class CadastroLancamentoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private CadastroLancamentos cadastro;
+	private CadastroLancamentos cadastro; // Editar e exlcuir lancamento
 	
 	@Inject
-	private Pessoas pessoas;
+	private Pessoas pessoas; // Classe que lista pessoas
 	
 	@Inject
-	private Lancamentos lancamentos;
+	private Lancamentos lancamentos; // CRUD na tabela laçamentos
 	
-	private Lancamento lancamento;
-	private List<Pessoa> todasPessoas;
+	private Lancamento lancamento; // Classe lancamento mapeada para o banco de dados
+	private List<Pessoa> todasPessoas; // Pessoa eh classe mapeada para o banco de dados
 
 	public void prepararCadastro() {
 		this.todasPessoas = this.pessoas.todas();

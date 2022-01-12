@@ -1,3 +1,4 @@
+/*
 package com.algaworks.financeiro.model;
 
 import javax.persistence.Entity;
@@ -30,3 +31,4 @@ public class Pessoa2 {
         this.id = id;
     }
 }
+*/

@@ -27,7 +27,7 @@ public class ContaBancaria implements Serializable {
 
     private static final long serialVersionUID = 1L; // nao entendi para o que serve
 
-    private int id;
+    private Long id;
     private String numero;
     private Date dataCadastro;
     private String banco;
@@ -36,11 +36,11 @@ public class ContaBancaria implements Serializable {
 
     @Id
     @GeneratedValue
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,7 +58,8 @@ public class ContaBancaria implements Serializable {
 
     @NotNull
     @CreationTimestamp
-    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_cadastro", nullable = false)
     public Date getDataCadastro() {
         return dataCadastro;
     }
@@ -68,6 +69,7 @@ public class ContaBancaria implements Serializable {
     }
 
     @NotNull
+    @NotEmpty
     @Size(max = 100)
     @Column(length = 100, nullable = false)
     public String getBanco() {
@@ -97,5 +99,30 @@ public class ContaBancaria implements Serializable {
 
     public void setTipo(TipoConta tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ContaBancaria other = (ContaBancaria) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
     }
 }

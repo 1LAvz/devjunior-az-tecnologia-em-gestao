@@ -22,8 +22,9 @@ public class Pessoas implements Serializable  {
 
 	public Pessoa porId(Long id) {
 		return manager.find(Pessoa.class, id);
-	}
-	
+	} //GET pessoa baseada no id
+
+	// Lista de todas as pessoas?
 	public List<Pessoa> todas() {
 		TypedQuery<Pessoa> query = manager.createQuery(
 				"from Pessoa", Pessoa.class);
