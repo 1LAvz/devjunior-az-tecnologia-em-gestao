@@ -19,14 +19,22 @@ public class CadastroContaBancariaBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private ContaBancaria contaBancaria;
-
-    @Inject
     private CadastroContasBancarias cadastroContaBancaria;
 
+    @Inject
+    private ContaBancaria contaBancaria;
+
     public void prepararCadastro() {
+
         if (this.contaBancaria == null) {
             this.contaBancaria = new ContaBancaria();
+        }
+    }
+
+    public void adicionarData() {
+        Date dataDeCriacao = new Date();
+        if(this.contaBancaria.getDataCadastro() == null) {
+            this.contaBancaria.setDataCadastro(dataDeCriacao);
         }
     }
 
@@ -45,18 +53,15 @@ public class CadastroContaBancariaBean implements Serializable {
         }
     }
 
-    public void adicionarData() {
-        Date dataDeCriacao = new Date();
-        if(this.contaBancaria.getDataCadastro() == null) {
-            this.contaBancaria.setDataCadastro(dataDeCriacao);
-        }
-    }
-
     public TipoConta[] getTiposContas() {
         return TipoConta.values();
     }
 
     public ContaBancaria getContaBancaria() {
         return contaBancaria;
+    }
+
+    public void setContaBancaria(ContaBancaria contaBancaria) {
+        this.contaBancaria = contaBancaria;
     }
 }

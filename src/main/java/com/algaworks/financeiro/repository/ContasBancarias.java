@@ -6,7 +6,9 @@ import com.algaworks.financeiro.model.Lancamento;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import java.util.List;
 
 public class ContasBancarias implements Serializable {
 
@@ -23,6 +25,16 @@ public class ContasBancarias implements Serializable {
         return manager.find(ContaBancaria.class, id);
     } // READ
 
+
+
+    // Lista contendo todos os lacamentos
+    public List<ContaBancaria> todos() {
+        TypedQuery<ContaBancaria> query = manager.createQuery(
+                "from ContaBancaria", ContaBancaria.class);
+        return query.getResultList();
+    }
+
+
     //CREATE
     public void adicionar(ContaBancaria contaBancaria) {
         this.manager.persist(contaBancaria);
@@ -34,7 +46,7 @@ public class ContasBancarias implements Serializable {
     }
 
     //DELETE
-    public void remover(Lancamento lancamento) {
-        this.manager.remove(lancamento);
+    public void remover(ContaBancaria contaBancaria) {
+        this.manager.remove(contaBancaria);
     }
 }
