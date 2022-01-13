@@ -30,11 +30,6 @@ public class CadastroContaBancariaBean implements Serializable {
         }
     }
 
-//    public void adicionarData() {
-//        Date dataDeCriacao = new Date();
-//        this.contaBancaria.setDataCadastro(dataDeCriacao);
-//    }
-
     public void salvar() {
         FacesContext context = FacesContext.getCurrentInstance();
 

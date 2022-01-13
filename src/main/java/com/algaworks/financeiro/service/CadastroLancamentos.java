@@ -1,6 +1,8 @@
 package com.algaworks.financeiro.service;
 
 import com.algaworks.financeiro.model.Lancamento;
+import com.algaworks.financeiro.model.TipoLancamento;
+import com.algaworks.financeiro.repository.ContasBancarias;
 import com.algaworks.financeiro.repository.Lancamentos;
 import com.algaworks.financeiro.util.Transactional;
 
@@ -14,6 +16,9 @@ public class CadastroLancamentos implements Serializable {
 	
 	@Inject
 	private Lancamentos lancamentos;
+
+	@Inject
+	private ContasBancarias contasBancarias;
 	
 	@Transactional
 	public void salvar(Lancamento lancamento) throws NegocioException {
@@ -22,8 +27,14 @@ public class CadastroLancamentos implements Serializable {
 			throw new NegocioException(
 					"Data de pagamento não pode ser uma data futura.");
 		}
-		
-		this.lancamentos. guardar(lancamento);
+
+		if(lancamento.getTipo().equals(TipoLancamento.RECEITA)){
+			this.contasBancarias.adicionarReceita(lancamento.getConta(), lancamento.getValor());
+		} else if (lancamento.getTipo().equals(TipoLancamento.DESPESA)) {
+			this.contasBancarias.adicionarDespesa(lancamento.getConta(), lancamento.getValor());
+		}
+
+		this.lancamentos.guardar(lancamento);
 	}
 	
 	@Transactional

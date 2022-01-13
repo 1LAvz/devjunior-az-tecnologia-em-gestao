@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ContasBancarias implements Serializable {
@@ -43,6 +44,16 @@ public class ContasBancarias implements Serializable {
     //UPDATE
     public ContaBancaria guardar(ContaBancaria contaBancaria) {
         return this.manager.merge(contaBancaria);
+    }
+
+    public void adicionarReceita(ContaBancaria contaBancaria, BigDecimal receita) {
+        contaBancaria.setSaldo(contaBancaria.getSaldo().add(receita));
+        this.manager.merge(contaBancaria);
+    }
+
+    public void adicionarDespesa(ContaBancaria contaBancaria, BigDecimal despesa) {
+        contaBancaria.setSaldo(contaBancaria.getSaldo().subtract(despesa));
+        this.manager.merge(contaBancaria);
     }
 
     //DELETE
