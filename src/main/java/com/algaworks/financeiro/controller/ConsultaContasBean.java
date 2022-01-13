@@ -46,7 +46,7 @@ public class ConsultaContasBean implements Serializable {
     }
 
     public void consultar() {
-        this.contas = contasBancariasRepository.todos();
+        this.contas = contasBancariasRepository.todas();
     }
 
     public List<ContaBancaria> getContas() {

@@ -1,6 +1,4 @@
-import com.algaworks.financeiro.model.Lancamento;
-import com.algaworks.financeiro.model.Pessoa;
-import com.algaworks.financeiro.model.TipoLancamento;
+import com.algaworks.financeiro.model.*;
 import com.algaworks.financeiro.util.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -27,8 +25,19 @@ public class CriaLancamentos {
 		Pessoa cliente = new Pessoa();
 		cliente.setNome("WWW Indústria de Alimentos");
 
-//		Pessoa2 cliente2 = new Pessoa2();
-//		cliente2.setNome("Lucas Avanzi");
+		//------------------------------------------------------------------
+		Calendar dataDeCadastro = Calendar.getInstance();
+		dataDeCadastro.set(2021, 12, 10, 0, 0, 0);
+
+		BigDecimal saldo = new BigDecimal(1540);
+
+		ContaBancaria conta = new ContaBancaria();
+		conta.setBanco("Banco Do Brasil");
+		conta.setDataCadastro(dataDeCadastro.getTime());
+		conta.setNumero("3524-22");
+		conta.setSaldo(saldo);
+		conta.setTipo(TipoConta.FISICA);
+		//------------------------------------------------------------------
 		
 		Pessoa fornecedor = new Pessoa();
 		fornecedor.setNome("SoftBRAX Treinamentos");
@@ -36,32 +45,33 @@ public class CriaLancamentos {
 		Lancamento lancamento1 = new Lancamento();
 		lancamento1.setDescricao("Venda de licença de software");
 		lancamento1.setPessoa(cliente);
+		lancamento1.setConta(conta);
 		lancamento1.setDataVencimento(dataVencimento1.getTime());
 		lancamento1.setDataPagamento(dataVencimento1.getTime());
 		lancamento1.setValor(new BigDecimal(103_000));
 		lancamento1.setTipo(TipoLancamento.RECEITA);
 		
-		Lancamento lancamento2 = new Lancamento();
-		lancamento2.setDescricao("Venda de suporte anual");
-		lancamento2.setPessoa(cliente);
-		lancamento2.setDataVencimento(dataVencimento1.getTime());
-		lancamento2.setDataPagamento(dataVencimento1.getTime());
-		lancamento2.setValor(new BigDecimal(15_000));
-		lancamento2.setTipo(TipoLancamento.RECEITA);
-		
-		Lancamento lancamento3 = new Lancamento();
-		lancamento3.setDescricao("Treinamento da equipe");
-		lancamento3.setPessoa(fornecedor);
-		lancamento3.setDataVencimento(dataVencimento2.getTime());
-		lancamento3.setValor(new BigDecimal(68_000));
-		lancamento3.setTipo(TipoLancamento.DESPESA);
+//		Lancamento lancamento2 = new Lancamento();
+//		lancamento2.setDescricao("Venda de suporte anual");
+//		lancamento2.setPessoa(cliente);
+//		lancamento2.setDataVencimento(dataVencimento1.getTime());
+//		lancamento2.setDataPagamento(dataVencimento1.getTime());
+//		lancamento2.setValor(new BigDecimal(15_000));
+//		lancamento2.setTipo(TipoLancamento.RECEITA);
+//
+//		Lancamento lancamento3 = new Lancamento();
+//		lancamento3.setDescricao("Treinamento da equipe");
+//		lancamento3.setPessoa(fornecedor);
+//		lancamento3.setDataVencimento(dataVencimento2.getTime());
+//		lancamento3.setValor(new BigDecimal(68_000));
+//		lancamento3.setTipo(TipoLancamento.DESPESA);
 		
 		manager.persist(cliente);
-//		manager.persist(cliente2);
+		manager.persist(conta);
 		manager.persist(fornecedor);
 		manager.persist(lancamento1);
-		manager.persist(lancamento2);
-		manager.persist(lancamento3);
+//		manager.persist(lancamento2);
+//		manager.persist(lancamento3);
 		
 		trx.commit();
 		manager.close();

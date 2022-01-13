@@ -27,7 +27,7 @@ public class ContasBancarias implements Serializable {
 
 
     // Lista contendo todos as contas
-    public List<ContaBancaria> todos() {
+    public List<ContaBancaria> todas() {
         TypedQuery<ContaBancaria> query = manager.createQuery(
                 "from ContaBancaria", ContaBancaria.class);
         return query.getResultList();

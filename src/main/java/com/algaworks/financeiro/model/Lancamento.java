@@ -18,6 +18,7 @@ public class Lancamento implements Serializable {
 	
 	private Long id;
 	private Pessoa pessoa;
+	private ContaBancaria conta;
 	// @Column(name="descricao") pode ser omitido pois o mesmo nome da variavel eh o da coluna do banco.
 	private String descricao;
 	private BigDecimal valor;
@@ -44,6 +45,17 @@ public class Lancamento implements Serializable {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	@NotNull //can not be null
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "conta_id")
+	public ContaBancaria getConta() {
+		return conta;
+	}
+
+	public void setConta(ContaBancaria conta) {
+		this.conta = conta;
 	}
 
 	@NotEmpty

@@ -1,8 +1,10 @@
 package com.algaworks.financeiro.controller;
 
+import com.algaworks.financeiro.model.ContaBancaria;
 import com.algaworks.financeiro.model.Lancamento;
 import com.algaworks.financeiro.model.Pessoa;
 import com.algaworks.financeiro.model.TipoLancamento;
+import com.algaworks.financeiro.repository.ContasBancarias;
 import com.algaworks.financeiro.repository.Lancamentos;
 import com.algaworks.financeiro.repository.Pessoas;
 import com.algaworks.financeiro.service.CadastroLancamentos;
@@ -27,6 +29,8 @@ public class CadastroLancamentoBean implements Serializable {
 	
 	@Inject
 	private Pessoas pessoas; // Classe que lista pessoas
+	@Inject
+	private ContasBancarias contasBancarias;
 	
 	@Inject
 	private Lancamentos lancamentos; // CRUD na tabela laçamentos
@@ -34,8 +38,13 @@ public class CadastroLancamentoBean implements Serializable {
 	private Lancamento lancamento; // Classe lancamento mapeada para o banco de dados
 	private List<Pessoa> todasPessoas; // Pessoa eh classe mapeada para o banco de dados
 
+
+
+	private List<ContaBancaria> todasContasBancarias;
+
 	public void prepararCadastro() {
 		this.todasPessoas = this.pessoas.todas();
+		this.todasContasBancarias = this.contasBancarias.todas();
 		
 		if (this.lancamento == null) {
 			this.lancamento = new Lancamento();
@@ -70,6 +79,10 @@ public class CadastroLancamentoBean implements Serializable {
 	
 	public List<Pessoa> getTodasPessoas() {
 		return this.todasPessoas;
+	}
+
+	public List<ContaBancaria> getTodasContasBancarias() {
+		return todasContasBancarias;
 	}
 	
 	public TipoLancamento[] getTiposLancamentos() {
