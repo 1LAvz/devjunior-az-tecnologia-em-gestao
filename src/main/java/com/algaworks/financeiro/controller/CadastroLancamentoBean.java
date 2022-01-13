@@ -50,41 +50,41 @@ public class CadastroLancamentoBean implements Serializable {
 			this.lancamento = new Lancamento();
 		}
 	}
-	
+
+	public List<ContaBancaria> getTodasContasBancarias() {
+		return todasContasBancarias;
+	}
+
 	public List<String> pesquisarDescricoes(String descricao) {
 		return this.lancamentos.descricoesQueContem(descricao);
 	}
-	
+
 	public void dataVencimentoAlterada(AjaxBehaviorEvent event) {
 		if (this.lancamento.getDataPagamento() == null) {
 			this.lancamento.setDataPagamento(this.lancamento.getDataVencimento());
 		}
 	}
-	
+
 	public void salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		
+
 		try {
 			this.cadastro.salvar(this.lancamento);
-			
+
 			this.lancamento = new Lancamento();
 			context.addMessage(null, new FacesMessage("Lançamento salvo com sucesso!"));
 		} catch (NegocioException e) {
-			
+
 			FacesMessage mensagem = new FacesMessage(e.getMessage());
 			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, mensagem);
 		}
 	}
-	
+
 	public List<Pessoa> getTodasPessoas() {
 		return this.todasPessoas;
 	}
 
-	public List<ContaBancaria> getTodasContasBancarias() {
-		return todasContasBancarias;
-	}
-	
 	public TipoLancamento[] getTiposLancamentos() {
 		return TipoLancamento.values();
 	}

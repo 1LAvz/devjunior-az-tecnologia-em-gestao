@@ -42,7 +42,7 @@
 								 id="conta" filter="true" filterMatchMode="contains">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 					<f:selectItems value="#{cadastroLancamentoBean.todasContasBancarias}"
-								   var="conta" itemValue="#{conta}" itemLabel="#{conta.banco}" />
+								   var="conta" itemValue="#{conta}" itemLabel="#{conta.banco.concat('/').concat(conta.numero)}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Descrição" for="descricao" />
